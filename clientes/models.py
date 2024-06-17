@@ -8,11 +8,14 @@ class Cliente(models.Model):
 
     def __str__(self) -> str:
         return self.nome
-    
-class Carros(models.Model):
+
+class Carro(models.Model):
     carro = models.CharField(max_length=50)
-    placa = models.CharField(max_length=50)
-    ano = models.CharField(max_length=4)
+    placa = models.CharField(max_length=8)
+    ano = models.IntegerField()
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    lavagens = models.IntegerField(default=0)
+    consertos = models.IntegerField(default=0)
 
     def __str__(self) -> str:
         return self.carro
